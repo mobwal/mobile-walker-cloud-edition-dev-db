@@ -8,12 +8,12 @@ CREATE TABLE dbo.cd_results (
 	n_longitude numeric(20,15),
 	n_latitude numeric(20,15),
 	jb_data jsonb,
-	dx_created timestamp without time zone DEFAULT now() NOT NULL,
 	c_notice text,
-	n_distance bigint
+	n_distance bigint,
+	dx_created timestamp without time zone DEFAULT now() NOT NULL
 );
 
-ALTER TABLE dbo.cd_results OWNER TO "mobwal-cloud";
+ALTER TABLE dbo.cd_results OWNER TO "city";
 
 COMMENT ON TABLE dbo.cd_results IS 'Результат выполнения';
 

@@ -9,17 +9,12 @@ CREATE TABLE dbo.cd_attachments (
 	n_latitude numeric(20,15),
 	c_notice text,
 	d_date timestamp without time zone NOT NULL,
-	c_path text NOT NULL,
-	n_size integer NOT NULL,
-	c_extension text,
-	c_mime text,
-	jb_data jsonb,
-	dx_created timestamp without time zone DEFAULT now() NOT NULL,
+	f_storage uuid NOT NULL,
 	n_distance bigint,
 	b_disabled boolean DEFAULT false NOT NULL
 );
 
-ALTER TABLE dbo.cd_attachments OWNER TO "mobwal-cloud";
+ALTER TABLE dbo.cd_attachments OWNER TO "city";
 
 COMMENT ON TABLE dbo.cd_attachments IS 'Файлы';
 
@@ -41,19 +36,13 @@ COMMENT ON COLUMN dbo.cd_attachments.n_latitude IS 'Широта';
 
 COMMENT ON COLUMN dbo.cd_attachments.c_notice IS 'Примечание';
 
-COMMENT ON COLUMN dbo.cd_attachments.d_date IS 'Дата создания';
+COMMENT ON COLUMN dbo.cd_attachments.d_date IS 'Дата создания в мобильном устройстве';
 
-COMMENT ON COLUMN dbo.cd_attachments.c_path IS 'Путь к файлу';
+COMMENT ON COLUMN dbo.cd_attachments.f_storage IS 'Связь с хранилищем';
 
-COMMENT ON COLUMN dbo.cd_attachments.n_size IS 'Размер';
+COMMENT ON COLUMN dbo.cd_attachments.n_distance IS 'Дистанция до задания, если задана координата';
 
-COMMENT ON COLUMN dbo.cd_attachments.c_extension IS 'Расширение файла';
-
-COMMENT ON COLUMN dbo.cd_attachments.c_mime IS 'MIME';
-
-COMMENT ON COLUMN dbo.cd_attachments.jb_data IS 'JSON данные';
-
-COMMENT ON COLUMN dbo.cd_attachments.dx_created IS 'Дата создания в БД';
+COMMENT ON COLUMN dbo.cd_attachments.b_disabled IS 'Признак удаленной (отключения) записи';
 
 --------------------------------------------------------------------------------
 
